@@ -55,6 +55,32 @@ input, select {
 }
 .result { color: var(--accent-2); min-height: 1.2rem; }
 .tableWrap { overflow-x: auto; }
+
+.calc {
+  margin-top: 14px;
+  border-top: 1px solid #2b3c5f;
+  padding-top: 12px;
+}
+.calc h3 { margin: 0 0 4px 0; font-size: 1rem; }
+.calcHint { margin: 0 0 8px 0; color: var(--muted); font-size: 0.85rem; }
+.calcBtns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 8px;
+}
+.calcBtns button {
+  min-height: 42px;
+  font-size: 1rem;
+}
+.key.op { background: #213559; }
+#calcEval { background: #1f6f53; border-color: #3fa682; }
+#calcClear { background: #4e2432; border-color: #9a4b63; }
+.calcActions {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
 table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 th, td { border-bottom: 1px solid #273658; padding: 6px; text-align: right; }
 th:first-child, td:first-child { text-align: center; }

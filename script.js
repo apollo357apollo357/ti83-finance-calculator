@@ -1,4 +1,6 @@
 const $ = (id) => document.getElementById(id);
+let selectedInput = null;
+let lastCalcValue = null;
 
 for (const btn of document.querySelectorAll('.tab')) {
   btn.addEventListener('click', () => {
@@ -102,4 +104,59 @@ $('buildSchedule').addEventListener('click', () => {
     tr.innerHTML = `<td>${i}</td><td>${fmt(pmt)}</td><td>${fmt(interest)}</td><td>${fmt(principalPart)}</td><td>${fmt(bal)}</td>`;
     tbody.appendChild(tr);
   }
+});
+
+for (const input of document.querySelectorAll('input[type="number"]')) {
+  input.addEventListener('focus', () => {
+    selectedInput = input;
+  });
+}
+
+function evalExpr(text) {
+  const expr = String(text || '').replace(/\s+/g, '');
+  if (!expr) throw new Error('Enter an expression');
+  if (!/^[0-9+\-*/().]+$/.test(expr)) throw new Error('Only basic math is allowed');
+  const out = Function(`"use strict"; return (${expr});`)();
+  if (!Number.isFinite(out)) throw new Error('Invalid math result');
+  return out;
+}
+
+for (const key of document.querySelectorAll('.key')) {
+  key.addEventListener('click', () => {
+    $('expr').value += key.dataset.key;
+  });
+}
+
+$('calcClear').addEventListener('click', () => {
+  $('expr').value = '';
+  $('calcResult').textContent = '';
+  lastCalcValue = null;
+});
+
+$('calcBack').addEventListener('click', () => {
+  $('expr').value = $('expr').value.slice(0, -1);
+});
+
+$('calcEval').addEventListener('click', () => {
+  try {
+    const val = evalExpr($('expr').value);
+    lastCalcValue = val;
+    $('calcResult').textContent = `Result: ${fmt(val)}`;
+  } catch (e) {
+    $('calcResult').textContent = e.message;
+  }
+});
+
+$('useResult').addEventListener('click', () => {
+  if (!Number.isFinite(lastCalcValue)) {
+    $('calcResult').textContent = 'Calculate a result first.';
+    return;
+  }
+  if (!selectedInput) {
+    $('calcResult').textContent = 'Tap a number field first.';
+    return;
+  }
+  selectedInput.value = lastCalcValue;
+  selectedInput.dispatchEvent(new Event('input', { bubbles: true }));
+  $('calcResult').textContent = `Inserted ${fmt(lastCalcValue)} into ${selectedInput.id.toUpperCase()}`;
 });
