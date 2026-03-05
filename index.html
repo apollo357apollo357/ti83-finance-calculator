@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TI-83 Style Finance Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>TI-83 Style Finance Calculator</h1>
+        <p>Mobile-friendly TVM + Loan + Amortization tools</p>
+      </header>
+
+      <nav class="tabs">
+        <button class="tab active" data-tab="tvm">TVM Solver</button>
+        <button class="tab" data-tab="loan">Loan Payment</button>
+        <button class="tab" data-tab="amort">Amortization</button>
+      </nav>
+
+      <section id="tvm" class="panel active">
+        <div class="grid">
+          <label>N (periods)<input id="n" type="number" step="any" value="60" /></label>
+          <label>I/Y (%)<input id="iy" type="number" step="any" value="6" /></label>
+          <label>PV<input id="pv" type="number" step="any" value="25000" /></label>
+          <label>PMT<input id="pmt" type="number" step="any" value="-483.32" /></label>
+          <label>FV<input id="fv" type="number" step="any" value="0" /></label>
+          <label>P/Y<input id="py" type="number" step="1" value="12" /></label>
+          <label>Mode
+            <select id="mode">
+              <option value="end" selected>END</option>
+              <option value="begin">BEGIN</option>
+            </select>
+          </label>
+          <label>Solve For
+            <select id="solveFor">
+              <option value="n">N</option>
+              <option value="iy">I/Y</option>
+              <option value="pv">PV</option>
+              <option value="pmt">PMT</option>
+              <option value="fv" selected>FV</option>
+            </select>
+          </label>
+        </div>
+        <button id="solveTvm">Solve TVM</button>
+        <p id="tvmResult" class="result"></p>
+      </section>
+
+      <section id="loan" class="panel">
+        <div class="grid">
+          <label>Principal<input id="loanPrincipal" type="number" step="any" value="25000" /></label>
+          <label>Annual Rate (%)<input id="loanRate" type="number" step="any" value="6" /></label>
+          <label>Years<input id="loanYears" type="number" step="any" value="5" /></label>
+          <label>Payments / Year<input id="loanPY" type="number" step="1" value="12" /></label>
+        </div>
+        <button id="calcLoan">Calculate Payment</button>
+        <p id="loanResult" class="result"></p>
+      </section>
+
+      <section id="amort" class="panel">
+        <div class="grid">
+          <label>Principal<input id="amPrincipal" type="number" step="any" value="25000" /></label>
+          <label>Annual Rate (%)<input id="amRate" type="number" step="any" value="6" /></label>
+          <label>Years<input id="amYears" type="number" step="any" value="5" /></label>
+          <label>Payments / Year<input id="amPY" type="number" step="1" value="12" /></label>
+        </div>
+        <button id="buildSchedule">Build Amortization</button>
+        <div class="tableWrap">
+          <table id="schedule">
+            <thead>
+              <tr><th>#</th><th>Payment</th><th>Interest</th><th>Principal</th><th>Balance</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
