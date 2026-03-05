@@ -21,12 +21,12 @@
 
       <section id="tvm" class="panel active">
         <div class="grid">
-          <label>N (periods)<input id="n" type="number" step="any" value="60" /></label>
-          <label>I/Y (%)<input id="iy" type="number" step="any" value="6" /></label>
-          <label>PV<input id="pv" type="number" step="any" value="25000" /></label>
-          <label>PMT<input id="pmt" type="number" step="any" value="-483.32" /></label>
-          <label>FV<input id="fv" type="number" step="any" value="0" /></label>
-          <label>P/Y<input id="py" type="number" step="1" value="12" /></label>
+          <label>N (periods)<input id="n" type="text" inputmode="text" value="60" /></label>
+          <label>I/Y (%)<input id="iy" type="text" inputmode="text" value="6" /></label>
+          <label>PV<input id="pv" type="text" inputmode="text" value="25000" /></label>
+          <label>PMT<input id="pmt" type="text" inputmode="text" value="-483.32" /></label>
+          <label>FV<input id="fv" type="text" inputmode="text" value="0" /></label>
+          <label>P/Y<input id="py" type="text" inputmode="text" value="12" /></label>
           <label>Mode
             <select id="mode">
               <option value="end" selected>END</option>
@@ -49,7 +49,7 @@
         <div class="calc" id="quickCalc">
           <h3>Quick Math (for N, PV, etc.)</h3>
           <p class="calcHint">Tap a field first, then calculate (example: <code>2*12*7</code>) and insert result.</p>
-          <input id="expr" type="text" placeholder="e.g. 2*12*7" inputmode="decimal" />
+          <input id="expr" type="text" placeholder="e.g. 2*12*7" inputmode="text" />
           <div class="calcBtns">
             <button type="button" class="key" data-key="7">7</button><button type="button" class="key" data-key="8">8</button><button type="button" class="key" data-key="9">9</button><button type="button" class="key op" data-key="/">÷</button>
             <button type="button" class="key" data-key="4">4</button><button type="button" class="key" data-key="5">5</button><button type="button" class="key" data-key="6">6</button><button type="button" class="key op" data-key="*">×</button>
@@ -66,10 +66,10 @@
 
       <section id="loan" class="panel">
         <div class="grid">
-          <label>Principal<input id="loanPrincipal" type="number" step="any" value="25000" /></label>
-          <label>Annual Rate (%)<input id="loanRate" type="number" step="any" value="6" /></label>
-          <label>Years<input id="loanYears" type="number" step="any" value="5" /></label>
-          <label>Payments / Year<input id="loanPY" type="number" step="1" value="12" /></label>
+          <label>Principal<input id="loanPrincipal" type="text" inputmode="text" value="25000" /></label>
+          <label>Annual Rate (%)<input id="loanRate" type="text" inputmode="text" value="6" /></label>
+          <label>Years<input id="loanYears" type="text" inputmode="text" value="5" /></label>
+          <label>Payments / Year<input id="loanPY" type="text" inputmode="text" value="12" /></label>
         </div>
         <button id="calcLoan">Calculate Payment</button>
         <p id="loanResult" class="result"></p>
@@ -77,10 +77,10 @@
 
       <section id="amort" class="panel">
         <div class="grid">
-          <label>Principal<input id="amPrincipal" type="number" step="any" value="25000" /></label>
-          <label>Annual Rate (%)<input id="amRate" type="number" step="any" value="6" /></label>
-          <label>Years<input id="amYears" type="number" step="any" value="5" /></label>
-          <label>Payments / Year<input id="amPY" type="number" step="1" value="12" /></label>
+          <label>Principal<input id="amPrincipal" type="text" inputmode="text" value="25000" /></label>
+          <label>Annual Rate (%)<input id="amRate" type="text" inputmode="text" value="6" /></label>
+          <label>Years<input id="amYears" type="text" inputmode="text" value="5" /></label>
+          <label>Payments / Year<input id="amPY" type="text" inputmode="text" value="12" /></label>
         </div>
         <button id="buildSchedule">Build Amortization</button>
         <div class="tableWrap">

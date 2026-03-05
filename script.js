@@ -11,7 +11,15 @@ for (const btn of document.querySelectorAll('.tab')) {
   });
 }
 
-function num(v) { return Number(v); }
+function num(v) {
+  const text = String(v ?? '').trim();
+  if (!text) return NaN;
+  try {
+    return evalExpr(text);
+  } catch {
+    return Number(text);
+  }
+}
 function fmt(v) {
   if (!Number.isFinite(v)) return '—';
   return v.toLocaleString(undefined, { maximumFractionDigits: 6 });
@@ -106,7 +114,7 @@ $('buildSchedule').addEventListener('click', () => {
   }
 });
 
-for (const input of document.querySelectorAll('input[type="number"]')) {
+for (const input of document.querySelectorAll('section input[type="text"]:not(#expr)')) {
   input.addEventListener('focus', () => {
     selectedInput = input;
   });
